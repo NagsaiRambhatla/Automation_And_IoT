@@ -10,6 +10,7 @@
 #endif
 
 // Periodic batches use about 86,400 messages per 30 days of continuous running.
-// Occupancy, light, smoke and sensor-validity transitions add extra batches.
+// Actuator, occupancy, target and system-status changes add extra batches.
 // Local automation runs independently of this cloud reporting interval.
 constexpr unsigned long CLOUD_UPLOAD_INTERVAL_MS = 30000;
+constexpr unsigned long CLOUD_CONTROL_INTERVAL_MS = 5000;

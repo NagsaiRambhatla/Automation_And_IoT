@@ -1,0 +1,2444 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:4876
+ho 0 tail 12 room 4
+load:0x40078000,len:16532
+load:0x40080400,len:3500
+entry 0x400805b4
+AC: COOLING | Temperature: 42.10 C
+LIGHT: OFF - Room unoccupied
+SAFETY: Smoke detected; window forced OPEN
+Curtains/Windows: OPEN | Servo: 0 degrees
+Room assessment: Smoke alert
+Applied target: 38.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Fault, master=Fault
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 42.10 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 3628
+----------
+AC: COOLING | Temperature: 41.60 C
+Room assessment: Smoke alert
+Applied target: 38.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Fault, master=Fault
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 41.60 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 3628
+----------
+AC: COOLING | Temperature: 41.10 C
+Room assessment: Smoke alert
+Applied target: 38.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Fault, master=Fault
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 41.10 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 3628
+----------
+AC: COOLING | Temperature: 40.60 C
+Room assessment: Smoke alert
+Applied target: 38.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Fault, master=Fault
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 40.60 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 3628
+----------
+AC: COOLING | Temperature: 40.10 C
+Room assessment: Smoke alert
+Applied target: 38.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Fault, master=Fault
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 40.10 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 3628
+----------
+Blynk command received: target=24.5 C, window=CLOSED
+Blynk command applied: target=24.5 C, window request=CLOSED
+AC: COOLING | Temperature: 40.10 C
+Room assessment: Smoke alert
+Applied target: 24.5 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Fault, master=Fault
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 40.10 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 3628
+----------
+AC: COOLING | Temperature: 39.60 C
+Room assessment: Smoke alert
+Applied target: 24.5 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Fault, master=Fault
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 39.60 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 3628
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: COOLING | Temperature: 39.10 C
+Room assessment: Smoke alert
+Applied target: 24.5 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Fault, master=Fault
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 39.10 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 3628
+----------
+AC: COOLING | Temperature: 38.60 C
+Room assessment: Smoke alert
+Applied target: 24.5 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Fault, master=Fault
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 38.60 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 3628
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: COOLING | Temperature: 38.10 C
+Room assessment: Smoke alert
+Applied target: 24.5 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Fault, master=Fault
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 38.10 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 3628
+----------
+SAFETY: Smoke clear; dashboard window command active
+Curtains/Windows: CLOSED | Servo: 100 degrees
+AC: COOLING | Temperature: 37.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 37.60 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 37.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 37.10 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 36.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 42.60 C
+Simulated Temperature: 36.60 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 36.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: -4.00 C
+Simulated Temperature: 36.10 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: COOLING | Temperature: 35.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 35.60 C
+Humidity: 40.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 35.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 35.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 34.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 34.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 34.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 34.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 33.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 33.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 33.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 33.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 32.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 32.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 32.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 32.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 31.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 31.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 31.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 31.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 30.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 30.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 30.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 30.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 29.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 29.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 29.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 29.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 28.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 28.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: COOLING | Temperature: 28.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 28.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 27.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 27.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 27.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 27.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 26.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 26.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 26.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 26.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 25.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 25.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 25.10 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 25.10 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 24.60 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.60 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk command received: target=24.5 C, window=OPEN
+Blynk command applied: target=24.5 C, window request=OPEN
+Curtains/Windows: OPEN | Servo: 0 degrees
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Target reached: 24.50 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: HEATING | Temperature: 24.00 C
+Room assessment: Room empty
+Applied target: 24.5 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 24.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk command received: target=20.0 C, window=OPEN
+Blynk command applied: target=20.0 C, window request=OPEN
+AC: COOLING | Temperature: 23.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 23.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 22.50 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 22.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 22.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 22.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: COOLING | Temperature: 21.50 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 21.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 21.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 21.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: COOLING | Temperature: 20.50 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: ON | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.50 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Target reached: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk HTTPS upload: OK (HTTP 200)
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: OPEN
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+Blynk command received: target=20.0 C, window=CLOSED
+Blynk command applied: target=20.0 C, window request=CLOSED
+Curtains/Windows: CLOSED | Servo: 100 degrees
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------
+AC: STANDBY | Temperature: 20.00 C
+Room assessment: Room empty
+Applied target: 20.0 C | Relay: OFF | Window: CLOSED
+System status: climate=Working, lighting=Working, occupancy=Working, safety=Working, master=Working
+---- SENSOR DATA --------
+Actual Temperature: 20.00 C
+Simulated Temperature: 20.00 C
+Humidity: 60.00 %
+Motion: None
+Light level: 1001
+Smoke level: 843
+----------

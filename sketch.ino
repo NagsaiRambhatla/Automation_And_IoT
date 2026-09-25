@@ -37,6 +37,8 @@ const int SMOKE_THRESHOLD = 2000;
 unsigned long lastMotionTime = 0;
 const unsigned long OCCUPANCY_TIMEOUT = 10000;
 bool occupied = false;
+bool requestedWindowOpen = false;
+bool windowOpen = false;
 
 enum ClimateMode {
   CLIMATE_STANDBY,
@@ -236,19 +238,20 @@ void ambientTemperatureDrift(float ambientTemperature) {
 }
 
 void safetyCurtainControl(int smokeLevel) {
+  static int previousPosition = -1;
   static int previousAlarm = -1;
-  const int alarm = smokeLevel >= SMOKE_THRESHOLD;
-  if (alarm == previousAlarm) return;
-  previousAlarm = alarm;
-  if (smokeLevel >= SMOKE_THRESHOLD) {
-    servo.write(CURTAINS_OPEN);
-    Serial.println("SAFETY: Smoke detected");
-    Serial.println("Curtains/Windows: OPEN");
-
-  } else {
-    servo.write(CURTAINS_CLOSED);
-    Serial.println("Curtains/Windows: CLOSED");
+  const bool alarm = smokeLevel >= SMOKE_THRESHOLD;
+  if (alarm != previousAlarm) {
+    previousAlarm = alarm;
+    Serial.println(alarm ? "SAFETY: Smoke detected; window forced OPEN" : "SAFETY: Smoke clear; dashboard window command active");
   }
+  // Smoke has priority; clearing the alarm restores the user's latest command.
+  windowOpen = alarm || requestedWindowOpen;
+  if (previousPosition == windowOpen) return;
+  previousPosition = windowOpen;
+  servo.write(windowOpen ? CURTAINS_OPEN : CURTAINS_CLOSED);
+  Serial.printf("Curtains/Windows: %s | Servo: %d degrees\n",
+                windowOpen ? "OPEN" : "CLOSED", windowOpen ? CURTAINS_OPEN : CURTAINS_CLOSED);
 }
 
 void lightingControl(int motion, int lightLevel) {
@@ -288,6 +291,20 @@ void loop() {
     systemBootUp();
   }
 
+  CloudControl command{};
+  if (receiveCloudControl(command)) {
+    if (command.targetTemperature != targetTemperature) {
+      targetTemperature = command.targetTemperature;
+      // Re-evaluate against the current model value; changing the setpoint
+      // must not teleport the simulated temperature to the new target.
+      climateMode = CLIMATE_STANDBY;
+      digitalWrite(RELAY_PIN, LOW);
+    }
+    requestedWindowOpen = command.windowOpen;
+    Serial.printf("Blynk command applied: target=%.1f C, window request=%s\n",
+                  targetTemperature, requestedWindowOpen ? "OPEN" : "CLOSED");
+  }
+
   // Motion and smoke remain responsive while the slower DHT is sampled every 2s.
   int motion = digitalRead(PIR_PIN);
   int lightLevel = analogRead(LDR_PIN);
@@ -321,18 +338,30 @@ void loop() {
   setStatusLED(OCCUPANCY_LED, occupancyStatus);
   setStatusLED(SAFETY_LED, safetyStatus);
   const bool fault = climateStatus == STATUS_FAULT || safetyStatus == STATUS_FAULT;
-  setStatusLED(MASTER_LED, fault ? STATUS_FAULT : (cloudUploadHealthy.load() ? STATUS_OK : STATUS_CHECKING));
+  const SystemStatus masterStatus = fault ? STATUS_FAULT :
+      (cloudUploadHealthy.load() && cloudControlHealthy.load() ? STATUS_OK : STATUS_CHECKING);
+  setStatusLED(MASTER_LED, masterStatus);
 
-  if (readClimate) {
-    const CloudSample sample = {
+  const CloudSample sample = {
       data.temperature, data.humidity, simulatedTemperature, targetTemperature,
       lightLevel, smokeLevel, occupied, digitalRead(BULB_PIN) == HIGH,
-      smokeLevel >= SMOKE_THRESHOLD, climateStatus == STATUS_OK,
-      static_cast<unsigned char>(climateMode)
+      windowOpen, climateStatus == STATUS_OK,
+      static_cast<unsigned char>(climateMode), digitalRead(RELAY_PIN) == HIGH,
+      smokeLevel >= SMOKE_THRESHOLD,
+      {static_cast<unsigned char>(climateStatus), static_cast<unsigned char>(lightingStatus),
+       static_cast<unsigned char>(occupancyStatus), static_cast<unsigned char>(safetyStatus),
+       static_cast<unsigned char>(masterStatus)}
     };
-    publishCloudSample(sample);
+  publishCloudSample(sample);
+  if (readClimate) {
     Serial.print("Room assessment: ");
     Serial.println(roomAssessment(sample));
+    Serial.printf("Applied target: %.1f C | Relay: %s | Window: %s\n",
+                  targetTemperature, sample.relayOn ? "ON" : "OFF", windowOpen ? "OPEN" : "CLOSED");
+    Serial.printf("System status: climate=%s, lighting=%s, occupancy=%s, safety=%s, master=%s\n",
+                  systemStatusDescription(sample.status[0]), systemStatusDescription(sample.status[1]),
+                  systemStatusDescription(sample.status[2]), systemStatusDescription(sample.status[3]),
+                  systemStatusDescription(sample.status[4]));
   Serial.println("---- SENSOR DATA --------");
 
   Serial.print("Actual Temperature: ");

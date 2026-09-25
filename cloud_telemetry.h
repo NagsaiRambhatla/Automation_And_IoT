@@ -3,6 +3,7 @@
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
 #include <HTTPClient.h>
+#include <ArduinoJson.h>
 #include <atomic>
 #include <time.h>
 #include "freertos/FreeRTOS.h"
@@ -23,15 +24,31 @@ struct CloudSample {
   bool windowOpen;
   bool sensorValid;
   unsigned char climateMode; // 0 standby, 1 cooling, 2 heating
+  bool relayOn;
+  bool smokeAlarm;
+  unsigned char status[5]; // climate, lighting, occupancy, safety, master
+};
+
+struct CloudControl {
+  float targetTemperature;
+  bool windowOpen;
 };
 
 static QueueHandle_t cloudSamples = nullptr;
+static QueueHandle_t cloudCommands = nullptr;
 static std::atomic<bool> cloudUploadHealthy{false};
+static std::atomic<bool> cloudControlHealthy{false};
+
+inline const char* systemStatusDescription(unsigned char status) {
+  if (status == 0) return "Working";
+  if (status == 2) return "Fault";
+  return "Checking";
+}
 
 // Rule-based edge classification combines occupancy memory, darkness and smoke.
 // Smoke takes priority, then an invalid climate sensor, then occupancy/light.
 inline const char* roomAssessment(const CloudSample& sample) {
-  if (sample.windowOpen) return "Smoke alert";
+  if (sample.smokeAlarm) return "Smoke alert";
   if (!sample.sensorValid) return "Climate sensor fault";
   if (!sample.occupied) return "Room empty";
   if (sample.lightOn) return "Occupied and dark";
@@ -63,7 +80,7 @@ inline String encodeCloudValue(const char* value) {
 
 inline String cloudValues(const CloudSample& sample) {
   String values;
-  values.reserve(260);
+  values.reserve(420);
   // Invalid numeric readings are omitted; their widgets expire instead of
   // presenting old readings as current. Fault text is still uploaded.
   if (sample.sensorValid) {
@@ -77,9 +94,41 @@ inline String cloudValues(const CloudSample& sample) {
   values += "&v5=" + String(sample.lightOn ? 1 : 0);
   values += "&v6=" + encodeCloudValue(climateDescription(sample));
   values += "&v7=" + String(sample.windowOpen ? 1 : 0);
-  values += "&v9=" + String(sample.targetTemperature, 2);
+  // V9 and V12 belong to dashboard commands. Never overwrite user requests.
   values += "&v10=" + encodeCloudValue(roomAssessment(sample));
+  values += "&v11=" + String(sample.relayOn ? 1 : 0);
+  for (int i = 0; i < 5; ++i) {
+    values += "&v" + String(13 + i) + "=" + systemStatusDescription(sample.status[i]);
+  }
+  values += "&v18=" + String(sample.targetTemperature, 2); // applied target acknowledgement
   return values;
+}
+
+inline int cloudGet(const String& endpoint, String* response = nullptr) {
+  WiFiClientSecure client;
+  client.setCACert(BLYNK_ROOT_CA);
+  client.setHandshakeTimeout(10);
+  HTTPClient http;
+  http.setConnectTimeout(5000);
+  http.setTimeout(5000);
+  const String url = String("https://") + BLYNK_SERVER + "/external/api/" + endpoint;
+  if (!http.begin(client, url)) return -1;
+  const int result = http.GET();
+  if (response && result == HTTP_CODE_OK) *response = http.getString();
+  http.end();
+  return result;
+}
+
+inline bool parseCloudControl(const String& response, CloudControl& command) {
+  JsonDocument document;
+  if (deserializeJson(document, response)) return false;
+  // Missing, expired, malformed or out-of-range values must not move actuators.
+  if (!document["v9"].is<float>() || !document["v12"].is<int>()) return false;
+  const float target = document["v9"].as<float>();
+  const int window = document["v12"].as<int>();
+  if (!isfinite(target) || target < 16.0f || target > 40.0f || (window != 0 && window != 1)) return false;
+  command = {target, window == 1};
+  return true;
 }
 
 inline void cloudWorker(void*) {
@@ -90,12 +139,17 @@ inline void cloudWorker(void*) {
   unsigned long lastAttempt = 0;
   unsigned long lastReconnect = millis();
   bool firstUpload = true;
+  bool firstPoll = true;
+  unsigned long lastPoll = 0;
+  CloudControl previousCommand{38.0f, false};
+  bool haveCommand = false;
   CloudSample previousAttempt{};
 
   for (;;) {
     const unsigned long now = millis();
     if (WiFi.status() != WL_CONNECTED) {
       cloudUploadHealthy.store(false);
+      cloudControlHealthy.store(false);
       if (now - lastReconnect >= 15000) {
         lastReconnect = now;
         WiFi.reconnect();
@@ -108,33 +162,47 @@ inline void cloudWorker(void*) {
       vTaskDelay(pdMS_TO_TICKS(500));
       continue;
     }
+    if (firstPoll || now - lastPoll >= CLOUD_CONTROL_INTERVAL_MS) {
+      firstPoll = false;
+      String response;
+      const int result = cloudGet(String("getAll?token=") + encodeCloudValue(BLYNK_DEVICE_TOKEN), &response);
+      CloudControl command{};
+      const bool valid = result == HTTP_CODE_OK && parseCloudControl(response, command);
+      const bool wasHealthy = cloudControlHealthy.exchange(valid);
+      if (valid) {
+        if (!haveCommand || command.targetTemperature != previousCommand.targetTemperature ||
+            command.windowOpen != previousCommand.windowOpen) {
+          xQueueOverwrite(cloudCommands, &command);
+          previousCommand = command;
+          haveCommand = true;
+          Serial.printf("Blynk command received: target=%.1f C, window=%s\n",
+                        command.targetTemperature, command.windowOpen ? "OPEN" : "CLOSED");
+        }
+      } else if (wasHealthy || !haveCommand) {
+        Serial.printf("Blynk controls unavailable (HTTP %d); retaining local settings.\n", result);
+      }
+      lastPoll = millis();
+    }
     CloudSample sample{};
     const bool haveSample = xQueuePeek(cloudSamples, &sample, 0) == pdTRUE;
     // A short occupancy or safety transition must not fall between periodic
-    // uploads. Rate-limit these extra batches; climate cycling stays periodic.
+    // uploads. Rate-limit extra batches, including relay and status changes.
     const bool stateChanged = haveSample &&
         (sample.occupied != previousAttempt.occupied ||
          sample.lightOn != previousAttempt.lightOn ||
          sample.windowOpen != previousAttempt.windowOpen ||
-         sample.sensorValid != previousAttempt.sensorValid);
-    if (haveSample && (firstUpload || now - lastAttempt >= CLOUD_UPLOAD_INTERVAL_MS ||
-                       (stateChanged && now - lastAttempt >= 2000))) {
+         sample.sensorValid != previousAttempt.sensorValid ||
+         sample.relayOn != previousAttempt.relayOn ||
+         sample.targetTemperature != previousAttempt.targetTemperature ||
+         memcmp(sample.status, previousAttempt.status, sizeof(sample.status)) != 0);
+    const unsigned long uploadNow = millis();
+    if (haveSample && (firstUpload || uploadNow - lastAttempt >= CLOUD_UPLOAD_INTERVAL_MS ||
+                       (stateChanged && uploadNow - lastAttempt >= 2000))) {
       firstUpload = false;
-      lastAttempt = now;
+      lastAttempt = uploadNow;
       previousAttempt = sample;
-      WiFiClientSecure client;
-      client.setCACert(BLYNK_ROOT_CA);
-      client.setHandshakeTimeout(10);
-      HTTPClient http;
-      http.setConnectTimeout(5000);
-      http.setTimeout(5000);
-      const String url = String("https://") + BLYNK_SERVER +
-          "/external/api/batch/update?token=" + encodeCloudValue(BLYNK_DEVICE_TOKEN) + cloudValues(sample);
-      int result = -1;
-      if (http.begin(client, url)) {
-        result = http.GET();
-        http.end();
-      }
+      const int result = cloudGet(String("batch/update?token=") +
+          encodeCloudValue(BLYNK_DEVICE_TOKEN) + cloudValues(sample));
       cloudUploadHealthy.store(result == HTTP_CODE_OK);
       // Do not log the URL: it contains the private device credential.
       Serial.printf("Blynk HTTPS upload: %s (HTTP %d)\n", result == HTTP_CODE_OK ? "OK" : "FAILED", result);
@@ -149,7 +217,12 @@ inline void beginCloudTelemetry() {
     return;
   }
   cloudSamples = xQueueCreate(1, sizeof(CloudSample));
-  if (!cloudSamples) {
+  cloudCommands = xQueueCreate(1, sizeof(CloudControl));
+  if (!cloudSamples || !cloudCommands) {
+    if (cloudSamples) vQueueDelete(cloudSamples);
+    if (cloudCommands) vQueueDelete(cloudCommands);
+    cloudSamples = nullptr;
+    cloudCommands = nullptr;
     Serial.println("Cloud queue allocation failed.");
     return;
   }
@@ -157,11 +230,17 @@ inline void beginCloudTelemetry() {
   // block smoke response, motion detection or the other local automation.
   if (xTaskCreate(cloudWorker, "blynk_https", 12288, nullptr, 1, nullptr) != pdPASS) {
     vQueueDelete(cloudSamples);
+    vQueueDelete(cloudCommands);
     cloudSamples = nullptr;
+    cloudCommands = nullptr;
     Serial.println("Cloud task creation failed.");
   }
 }
 
 inline void publishCloudSample(const CloudSample& sample) {
   if (cloudSamples) xQueueOverwrite(cloudSamples, &sample);
+}
+
+inline bool receiveCloudControl(CloudControl& command) {
+  return cloudCommands && xQueueReceive(cloudCommands, &command, 0) == pdTRUE;
 }
