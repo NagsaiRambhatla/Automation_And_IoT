@@ -1,0 +1,7 @@
+secrets.h
+.env
+.pio/
+build/
+__pycache__/
+*.bin
+*.elf

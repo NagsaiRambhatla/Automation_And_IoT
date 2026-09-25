@@ -1,6 +1,7 @@
 #include "DHTesp.h"
 #include <ESP32Servo.h>
 #include <Adafruit_NeoPixel.h>
+#include "cloud_telemetry.h"
 
 // Pin Definitions 
 #define DHT_PIN    15
@@ -80,6 +81,7 @@ void setup() {
   digitalWrite(RELAY_PIN, LOW);
   digitalWrite(BULB_PIN, LOW);
   servo.write(CURTAINS_CLOSED);
+  beginCloudTelemetry();
 }
 
 // This function handles the assignment of colours to RGB LED Status Indicators
@@ -119,12 +121,17 @@ void systemBootUp(){
   setStatusLED(OCCUPANCY_LED, STATUS_CHECKING);
   setStatusLED(SAFETY_LED, STATUS_CHECKING);
   setStatusLED(MASTER_LED, STATUS_CHECKING);
-  delay(1000);
-  runHealthCheck();
+  // Sensor validation is performed continuously by loop().
   systemBoot = true;
 }
 
 void climateControl(float sensorTemperature) {
+  if (!isfinite(sensorTemperature)) {
+    climateMode = CLIMATE_STANDBY;
+    temperatureInitialized = false;
+    digitalWrite(RELAY_PIN, LOW);
+    return;
+  }
   // Initialise simulated room temperature once
   if (!temperatureInitialized) {
     simulatedTemperature = sensorTemperature;
@@ -229,6 +236,10 @@ void ambientTemperatureDrift(float ambientTemperature) {
 }
 
 void safetyCurtainControl(int smokeLevel) {
+  static int previousAlarm = -1;
+  const int alarm = smokeLevel >= SMOKE_THRESHOLD;
+  if (alarm == previousAlarm) return;
+  previousAlarm = alarm;
   if (smokeLevel >= SMOKE_THRESHOLD) {
     servo.write(CURTAINS_OPEN);
     Serial.println("SAFETY: Smoke detected");
@@ -254,6 +265,10 @@ void lightingControl(int motion, int lightLevel) {
   }
   // Higher LDR value means darker
   bool darkRoom = (lightLevel >= LIGHT_THRESHOLD);
+  static int previousLightState = -1;
+  const int nextLightState = occupied && darkRoom;
+  if (nextLightState == previousLightState) return;
+  previousLightState = nextLightState;
   if (occupied && darkRoom) {
     digitalWrite(BULB_PIN, HIGH);
     Serial.println("LIGHT: ON - Room occupied and dark");
@@ -273,12 +288,51 @@ void loop() {
     systemBootUp();
   }
 
-  // Reading sensors
-  TempAndHumidity data = dht.getTempAndHumidity();
-
+  // Motion and smoke remain responsive while the slower DHT is sampled every 2s.
   int motion = digitalRead(PIR_PIN);
   int lightLevel = analogRead(LDR_PIN);
   int smokeLevel = analogRead(SMOKE_PIN);
+  static unsigned long lastSensorRead = 0;
+  static bool firstReading = true;
+  static TempAndHumidity data = {NAN, NAN};
+  const bool readClimate = firstReading || millis() - lastSensorRead >= 2000;
+  if (readClimate) {
+    firstReading = false;
+    lastSensorRead = millis();
+    data = dht.getTempAndHumidity();
+    if (isfinite(data.temperature) && isfinite(data.humidity)) {
+      ambientTemperatureDrift(data.temperature);
+      climateControl(data.temperature);
+      climateStatus = STATUS_OK;
+    } else {
+      climateControl(NAN);
+      climateStatus = STATUS_FAULT;
+    }
+  }
+
+  // The existing three automation rules execute locally, without the cloud.
+  lightingControl(motion, lightLevel);
+  safetyCurtainControl(smokeLevel);
+  lightingStatus = STATUS_OK;
+  occupancyStatus = STATUS_OK;
+  safetyStatus = smokeLevel >= SMOKE_THRESHOLD ? STATUS_FAULT : STATUS_OK;
+  setStatusLED(CLIMATE_LED, climateStatus);
+  setStatusLED(LIGHTING_LED, lightingStatus);
+  setStatusLED(OCCUPANCY_LED, occupancyStatus);
+  setStatusLED(SAFETY_LED, safetyStatus);
+  const bool fault = climateStatus == STATUS_FAULT || safetyStatus == STATUS_FAULT;
+  setStatusLED(MASTER_LED, fault ? STATUS_FAULT : (cloudUploadHealthy.load() ? STATUS_OK : STATUS_CHECKING));
+
+  if (readClimate) {
+    const CloudSample sample = {
+      data.temperature, data.humidity, simulatedTemperature, targetTemperature,
+      lightLevel, smokeLevel, occupied, digitalRead(BULB_PIN) == HIGH,
+      smokeLevel >= SMOKE_THRESHOLD, climateStatus == STATUS_OK,
+      static_cast<unsigned char>(climateMode)
+    };
+    publishCloudSample(sample);
+    Serial.print("Room assessment: ");
+    Serial.println(roomAssessment(sample));
   Serial.println("---- SENSOR DATA --------");
 
   Serial.print("Actual Temperature: ");
@@ -303,13 +357,6 @@ void loop() {
   Serial.println(smokeLevel);
 
   Serial.println("----------");
-  // Automation systems
-  climateControl(data.temperature);
-
-  lightingControl(motion, lightLevel);
-
-  safetyCurtainControl(smokeLevel);
-  delay(2000);
-  // when HVAC is off
-  ambientTemperatureDrift(data.temperature);
+  }
+  delay(100); // Yield to Wi-Fi/HTTPS; local response is checked ten times per second.
 }
