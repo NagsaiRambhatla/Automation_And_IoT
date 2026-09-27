@@ -1,6 +1,7 @@
 #include "DHTesp.h"
 #include <ESP32Servo.h>
 #include <Adafruit_NeoPixel.h>
+#include "blynk_config.h"
 
 // Pin Definitions 
 #define DHT_PIN    15
@@ -28,6 +29,8 @@ bool systemBoot = false;
 // Curtain/Window Position
 #define CURTAINS_OPEN   0
 #define CURTAINS_CLOSED 100
+bool windowOpen = false;
+bool requestedWindowOpen = false;
 
 const int LIGHT_THRESHOLD = 2000;
 const int SMOKE_THRESHOLD = 2000;
@@ -80,6 +83,63 @@ void setup() {
   digitalWrite(RELAY_PIN, LOW);
   digitalWrite(BULB_PIN, LOW);
   servo.write(CURTAINS_CLOSED);
+  connectWiFi();
+}
+
+void uploadTelemetry(
+  float temperature,
+  float humidity,
+  int lightLevel,
+  int smokeLevel
+) {
+
+  String values = "";
+
+  values += "&V0=" + String(temperature, 2);
+  values += "&V1=" + String(humidity, 2);
+  values += "&V2=" + String(lightLevel);
+  values += "&V3=" + String(smokeLevel);
+  values += "&V4=" + String(occupied ? 1 : 0);
+  values += "&V5=" + String(digitalRead(BULB_PIN) == HIGH ? 1 : 0);
+  values += "&V7=" + String(windowOpen ? 1 : 0);
+  values += "&V8=" + String(simulatedTemperature, 2);
+  values += "&V11=" + String(digitalRead(RELAY_PIN) == HIGH ? 1 : 0);
+  values += "&V18=" + String(targetTemperature, 2);
+
+  updateBlynk(values);
+}
+
+void getBlynkControls() {
+
+  String targetResponse = getBlynkValue("V9");
+
+  if (targetResponse != "") {
+
+    float newTarget = targetResponse.toFloat();
+
+    if (newTarget >= 16.0 && newTarget <= 40.0) {
+
+      targetTemperature = newTarget;
+
+      Serial.print("Blynk Target Temperature: ");
+      Serial.println(targetTemperature);
+    }
+  }
+   // Window Command - V12
+  String windowResponse = getBlynkValue("V12");
+
+  if (windowResponse != "") {
+
+    int windowCommand = windowResponse.toInt();
+
+    if (windowCommand == 0 || windowCommand == 1) {
+
+      requestedWindowOpen = (windowCommand == 1);
+
+      Serial.print("Blynk Window Request: ");
+      Serial.println(requestedWindowOpen ? "OPEN" : "CLOSED");
+    }
+  }
 }
 
 // This function handles the assignment of colours to RGB LED Status Indicators
@@ -229,12 +289,31 @@ void ambientTemperatureDrift(float ambientTemperature) {
 }
 
 void safetyCurtainControl(int smokeLevel) {
-  if (smokeLevel >= SMOKE_THRESHOLD) {
-    servo.write(CURTAINS_OPEN);
-    Serial.println("SAFETY: Smoke detected");
-    Serial.println("Curtains/Windows: OPEN");
 
-  } else {
+  bool smokeDetected = smokeLevel >= SMOKE_THRESHOLD;
+
+  // Smoke has priority over the Blynk command
+  if (smokeDetected) {
+
+    windowOpen = true;
+
+    Serial.println("SAFETY: Smoke detected - Window forced OPEN");
+  }
+
+  else {
+
+    windowOpen = requestedWindowOpen;
+  }
+
+
+  if (windowOpen) {
+
+    servo.write(CURTAINS_OPEN);
+    Serial.println("Curtains/Windows: OPEN");
+  }
+
+  else {
+
     servo.write(CURTAINS_CLOSED);
     Serial.println("Curtains/Windows: CLOSED");
   }
@@ -312,4 +391,21 @@ void loop() {
   delay(2000);
   // when HVAC is off
   ambientTemperatureDrift(data.temperature);
+  if (millis() - lastBlynkUpload >= BLYNK_UPLOAD_INTERVAL) {
+
+  lastBlynkUpload = millis();
+
+  uploadTelemetry(
+    data.temperature,
+    data.humidity,
+    lightLevel,
+    smokeLevel
+  );
+ } 
+ if (millis() - lastBlynkControl >= BLYNK_CONTROL_INTERVAL) {
+
+  lastBlynkControl = millis();
+
+  getBlynkControls();
+ }
 }
