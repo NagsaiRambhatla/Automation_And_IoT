@@ -40,13 +40,17 @@ enum LightMode {
 LightMode requestedLightMode = LIGHT_OFF;
  
 const int LIGHT_THRESHOLD = 2000;
-const int SMOKE_THRESHOLD = 2000;
+// Wokwi's normal 400 ppm setting reads about 3628 with a 12-bit ADC.
+// Keep the alarm above this baseline; elevated gas still opens the window.
+const int SMOKE_THRESHOLD = 3800;
  
 // Lighting  config
 unsigned long lastMotionTime = 0;
 const unsigned long OCCUPANCY_TIMEOUT = 10000;
 bool occupied = false;
- 
+volatile uint32_t motionEventCount = 0;
+uint32_t processedMotionEventCount = 0;
+
 enum ClimateMode {
   CLIMATE_STANDBY,
   CLIMATE_COOLING,
@@ -76,15 +80,30 @@ Adafruit_NeoPixel strip(NUM_PIXELS, LED_STRIP_PIN, NEO_GRB + NEO_KHZ800);
 DHTesp dht;
 Servo servo;
  
+// Preserve PIR pulses even while a Blynk HTTP request blocks the main loop.
+void ARDUINO_ISR_ATTR onMotionDetected() {
+  motionEventCount = motionEventCount + 1;
+}
+
+int readMotion() {
+  const uint32_t eventCount = motionEventCount;
+  const bool pendingMotion = eventCount != processedMotionEventCount;
+  processedMotionEventCount = eventCount;
+  return (digitalRead(PIR_PIN) == HIGH || pendingMotion) ? HIGH : LOW;
+}
+
 void setup() {
   Serial.begin(115200);
   dht.setup(DHT_PIN, DHTesp::DHT22);
   servo.attach(SERVO_PIN, 500, 2400);
   strip.begin();
   strip.show();
-  pinMode(PIR_PIN, INPUT);
+  pinMode(PIR_PIN, INPUT_PULLDOWN);
+  attachInterrupt(digitalPinToInterrupt(PIR_PIN), onMotionDetected, RISING);
   pinMode(LDR_PIN, INPUT);
   pinMode(SMOKE_PIN, INPUT);
+  analogReadResolution(12);
+  analogSetPinAttenuation(SMOKE_PIN, ADC_11db);
   pinMode(RELAY_PIN, OUTPUT);
   pinMode(BULB_PIN, OUTPUT);
   digitalWrite(RELAY_PIN, LOW);
@@ -383,8 +402,7 @@ void loop() {
   // Reading sensors
   TempAndHumidity data = dht.getTempAndHumidity();
  
-  int motion = digitalRead(PIR_PIN);
-  Serial.println("Motion: " + motion);
+  int motion = readMotion();
   int lightLevel = analogRead(LDR_PIN);
   int smokeLevel = analogRead(SMOKE_PIN);
   Serial.println("---- SENSOR DATA --------");
