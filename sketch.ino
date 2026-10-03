@@ -2,73 +2,74 @@
 #include <ESP32Servo.h>
 #include <Adafruit_NeoPixel.h>
 #include "blynk_config.h"
-
-// Pin Definitions 
-#define DHT_PIN    15
-#define PIR_PIN    27
-#define LDR_PIN    34
-#define SMOKE_PIN  35
+ 
+// Pin Definitions
+#define DHT_PIN    15 //Temperature and humidity sensor pin
+#define PIR_PIN    27 //Motion sensor
+#define LDR_PIN    34 //Light sensor
+#define SMOKE_PIN  35 //Gas sensor
 #define SERVO_PIN  12
-#define RELAY_PIN  14
-#define LED_STRIP_PIN 2
-#define NUM_PIXELS 5
-#define BULB_PIN 16
+#define RELAY_PIN  14 //Acting as AC
+#define LED_STRIP_PIN 2 //Beginning of daisy chaining
+#define NUM_PIXELS 5 // Defining number of Leds
+#define BULB_PIN 16 //Light
 // Status Leds order
 #define CLIMATE_LED    0
 #define LIGHTING_LED   1
 #define OCCUPANCY_LED  2
 #define SAFETY_LED     3
 #define MASTER_LED     4
-// Status Led colours 
+// Status Led colours
 #define STATUS_GREEN   strip.Color(0, 255, 0)
 #define STATUS_YELLOW  strip.Color(255, 255, 0)
 #define STATUS_RED     strip.Color(255, 0, 0)
 #define STATUS_OFF     strip.Color(0, 0, 0)
-
+ 
 bool systemBoot = false;
 // Curtain/Window Position
 #define CURTAINS_OPEN   0
 #define CURTAINS_CLOSED 100
 bool windowOpen = false;
 bool requestedWindowOpen = false;
-
+bool requestedLightOn = false;
+ 
 const int LIGHT_THRESHOLD = 2000;
 const int SMOKE_THRESHOLD = 2000;
-
+ 
 // Lighting  config
 unsigned long lastMotionTime = 0;
 const unsigned long OCCUPANCY_TIMEOUT = 10000;
 bool occupied = false;
-
+ 
 enum ClimateMode {
   CLIMATE_STANDBY,
   CLIMATE_COOLING,
   CLIMATE_HEATING
 };
-
+ 
 ClimateMode climateMode = CLIMATE_STANDBY;
 float temperatureTolerance = 1.0;
 float targetTemperature = 38.00;
 float simulatedTemperature;
 bool temperatureInitialized = false;
 bool acOn = false;
-
+ 
 enum SystemStatus {
   STATUS_OK,
   STATUS_CHECKING,
   STATUS_FAULT
 };
-
+ 
 SystemStatus climateStatus   = STATUS_CHECKING;
 SystemStatus lightingStatus  = STATUS_CHECKING;
 SystemStatus occupancyStatus = STATUS_CHECKING;
 SystemStatus safetyStatus    = STATUS_CHECKING;
-
+ 
 Adafruit_NeoPixel strip(NUM_PIXELS, LED_STRIP_PIN, NEO_GRB + NEO_KHZ800);
-
+ 
 DHTesp dht;
 Servo servo;
-
+ 
 void setup() {
   Serial.begin(115200);
   dht.setup(DHT_PIN, DHTesp::DHT22);
@@ -85,16 +86,16 @@ void setup() {
   servo.write(CURTAINS_CLOSED);
   connectWiFi();
 }
-
+ 
 void uploadTelemetry(
   float temperature,
   float humidity,
   int lightLevel,
   int smokeLevel
 ) {
-
+ 
   String values = "";
-
+ 
   values += "&V0=" + String(temperature, 2);
   values += "&V1=" + String(humidity, 2);
   values += "&V2=" + String(lightLevel);
@@ -105,46 +106,61 @@ void uploadTelemetry(
   values += "&V8=" + String(simulatedTemperature, 2);
   values += "&V11=" + String(digitalRead(RELAY_PIN) == HIGH ? 1 : 0);
   values += "&V18=" + String(targetTemperature, 2);
-
+ 
   updateBlynk(values);
 }
-
+ 
 void getBlynkControls() {
-
+ 
   String targetResponse = getBlynkValue("V9");
-
+ 
   if (targetResponse != "") {
-
+ 
     float newTarget = targetResponse.toFloat();
-
+ 
     if (newTarget >= 16.0 && newTarget <= 40.0) {
-
+ 
       targetTemperature = newTarget;
-
+ 
       Serial.print("Blynk Target Temperature: ");
       Serial.println(targetTemperature);
     }
   }
    // Window Command - V12
   String windowResponse = getBlynkValue("V12");
-
+ 
   if (windowResponse != "") {
-
+ 
     int windowCommand = windowResponse.toInt();
-
+ 
     if (windowCommand == 0 || windowCommand == 1) {
-
+ 
       requestedWindowOpen = (windowCommand == 1);
-
+ 
       Serial.print("Blynk Window Request: ");
       Serial.println(requestedWindowOpen ? "OPEN" : "CLOSED");
     }
   }
+  // Manual Light Trigger
+  String lightResponse = getBlynkValue("V21");
+ 
+  if (targetResponse != "") {
+ 
+    int lightCommand  = lightResponse.toInt();
+ 
+    if (lightCommand == 0 || lightCommand == 1) {
+ 
+      requestedLightOn = (lightCommand == 1);
+ 
+      Serial.print("Light manual control request: ");
+      Serial.println(requestedLightOn ? "Turn on": "Turn Off");
+    }
+  }
 }
-
+ 
 // This function handles the assignment of colours to RGB LED Status Indicators
 void setStatusLED(int pixel, SystemStatus status) {
-
+ 
   switch (status) {
     case STATUS_OK:
       strip.setPixelColor(pixel, strip.Color(0, 255, 0));
@@ -158,21 +174,22 @@ void setStatusLED(int pixel, SystemStatus status) {
   }
   strip.show();
 }
-
+ 
 void runHealthCheck(){
   Serial.println("-------System Health Check Active----------");
-  
+ 
   TempAndHumidity data = dht.getTempAndHumidity();
   if(!isnan(data.temperature) && !isnan(data.humidity)){
     climateStatus = STATUS_OK;
     Serial.println("Climate System: OK");
+    setStatusLED(MASTER_LED, STATUS_OK);
   }else{
     climateStatus = STATUS_FAULT;
     Serial.println("Climate System: Fault");
   }
   setStatusLED(CLIMATE_LED, climateStatus);
 }
-
+ 
 void systemBootUp(){
   setStatusLED(CLIMATE_LED, STATUS_CHECKING);
   setStatusLED(LIGHTING_LED, STATUS_CHECKING);
@@ -182,15 +199,16 @@ void systemBootUp(){
   delay(1000);
   runHealthCheck();
   systemBoot = true;
+ 
 }
-
+ 
 void climateControl(float sensorTemperature) {
   // Initialise simulated room temperature once
   if (!temperatureInitialized) {
     simulatedTemperature = sensorTemperature;
     temperatureInitialized = true;
   }
-
+ 
   // If target changes while cooling/heating,
   // allow the system to stop and re-evaluate.
   if (climateMode == CLIMATE_COOLING &&
@@ -203,19 +221,19 @@ void climateControl(float sensorTemperature) {
     simulatedTemperature = targetTemperature;
     climateMode = CLIMATE_STANDBY;
   }
-
-
+ 
+ 
   // HVAC currently idle:
   // only start if temperature leaves tolerance range.
   if (climateMode == CLIMATE_STANDBY) {
     if (simulatedTemperature >= targetTemperature + temperatureTolerance) {
       climateMode = CLIMATE_COOLING;
     }
-
+ 
     else if (simulatedTemperature <= targetTemperature - temperatureTolerance) {
       climateMode = CLIMATE_HEATING;
     }
-
+ 
     else {
       digitalWrite(RELAY_PIN, LOW);
       Serial.print("AC: STANDBY | Temperature: ");
@@ -224,8 +242,8 @@ void climateControl(float sensorTemperature) {
       return;
     }
   }
-
-
+ 
+ 
   // COOLING
   if (climateMode == CLIMATE_COOLING) {
     digitalWrite(RELAY_PIN, HIGH);
@@ -237,7 +255,7 @@ void climateControl(float sensorTemperature) {
       Serial.print("AC: STANDBY | Target reached: ");
       Serial.print(simulatedTemperature);
       Serial.println(" C");
-
+ 
       return;
     }
     Serial.print("AC: COOLING | Temperature: ");
@@ -262,24 +280,24 @@ void climateControl(float sensorTemperature) {
     Serial.println(" C");
   }
 }
-
+ 
 void ambientTemperatureDrift(float ambientTemperature) {
-
+ 
   if (!temperatureInitialized) {
     return;
   }
-
+ 
   if (climateMode != CLIMATE_STANDBY) {
     return;
   }
-
+ 
   if (simulatedTemperature < ambientTemperature) {
     simulatedTemperature += 0.5;
     if (simulatedTemperature > ambientTemperature) {
       simulatedTemperature = ambientTemperature;
     }
   }
-
+ 
   else if (simulatedTemperature > ambientTemperature) {
     simulatedTemperature -= 0.5;
     if (simulatedTemperature < ambientTemperature) {
@@ -287,40 +305,45 @@ void ambientTemperatureDrift(float ambientTemperature) {
     }
   }
 }
-
+ 
 void safetyCurtainControl(int smokeLevel) {
-
+ 
   bool smokeDetected = smokeLevel >= SMOKE_THRESHOLD;
-
+ 
   // Smoke has priority over the Blynk command
   if (smokeDetected) {
-
+ 
     windowOpen = true;
-
+ 
     Serial.println("SAFETY: Smoke detected - Window forced OPEN");
   }
-
+ 
   else {
-
+ 
     windowOpen = requestedWindowOpen;
   }
-
-
+ 
+ 
   if (windowOpen) {
-
+ 
     servo.write(CURTAINS_OPEN);
     Serial.println("Curtains/Windows: OPEN");
   }
-
+ 
   else {
-
+ 
     servo.write(CURTAINS_CLOSED);
     Serial.println("Curtains/Windows: CLOSED");
   }
 }
-
+ 
 void lightingControl(int motion, int lightLevel) {
-
+  if(requestedLightOn){
+    digitalWrite(BULB_PIN, HIGH);
+  }else{
+    digitalWrite(BULB_PIN, LOW);
+  }
+ 
   // Motion detected means room is occupied
   if (motion == HIGH) {
     occupied = true;
@@ -345,67 +368,73 @@ void lightingControl(int motion, int lightLevel) {
     }
   }
 }
-
+ 
 void loop() {
-
+ 
   if (!systemBoot) {
     systemBootUp();
   }
-
+ 
   // Reading sensors
   TempAndHumidity data = dht.getTempAndHumidity();
-
+ 
   int motion = digitalRead(PIR_PIN);
+  Serial.println("Motion: " + motion);
   int lightLevel = analogRead(LDR_PIN);
   int smokeLevel = analogRead(SMOKE_PIN);
   Serial.println("---- SENSOR DATA --------");
-
+ 
   Serial.print("Actual Temperature: ");
   Serial.print(data.temperature);
   Serial.println(" C");
-
+ 
   Serial.print("Simulated Temperature: ");
   Serial.print(simulatedTemperature);
   Serial.println(" C");
-
+ 
   Serial.print("Humidity: ");
   Serial.print(data.humidity);
   Serial.println(" %");
-
+ 
   Serial.print("Motion: ");
   Serial.println(motion ? "DETECTED" : "None");
-
+ 
   Serial.print("Light level: ");
   Serial.println(lightLevel);
-
+ 
   Serial.print("Smoke level: ");
   Serial.println(smokeLevel);
-
+ 
   Serial.println("----------");
   // Automation systems
   climateControl(data.temperature);
-
-  lightingControl(motion, lightLevel);
-
+ 
+  // lightingControl(motion, lightLevel);
+  if(requestedLightOn == 1){
+    digitalWrite(BULB_PIN, HIGH);
+  }else{
+    digitalWrite(BULB_PIN, LOW);
+  }
+  Serial.println(requestedLightOn);
   safetyCurtainControl(smokeLevel);
   delay(2000);
   // when HVAC is off
   ambientTemperatureDrift(data.temperature);
   if (millis() - lastBlynkUpload >= BLYNK_UPLOAD_INTERVAL) {
-
+ 
   lastBlynkUpload = millis();
-
+ 
   uploadTelemetry(
     data.temperature,
     data.humidity,
     lightLevel,
     smokeLevel
   );
- } 
+ }
  if (millis() - lastBlynkControl >= BLYNK_CONTROL_INTERVAL) {
-
+ 
   lastBlynkControl = millis();
-
+ 
   getBlynkControls();
  }
 }
