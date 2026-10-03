@@ -31,7 +31,13 @@ bool systemBoot = false;
 #define CURTAINS_CLOSED 100
 bool windowOpen = false;
 bool requestedWindowOpen = false;
-bool requestedLightOn = false;
+// Blynk V21: 0 = Off, 1 = On, 2 = Auto.
+enum LightMode {
+  LIGHT_OFF = 0,
+  LIGHT_ON = 1,
+  LIGHT_AUTO = 2
+};
+LightMode requestedLightMode = LIGHT_OFF;
  
 const int LIGHT_THRESHOLD = 2000;
 const int SMOKE_THRESHOLD = 2000;
@@ -141,21 +147,16 @@ void getBlynkControls() {
       Serial.println(requestedWindowOpen ? "OPEN" : "CLOSED");
     }
   }
-  // Manual Light Trigger
+  // Light control - V21
   String lightResponse = getBlynkValue("V21");
- 
-  if (targetResponse != "") {
- 
-    int lightCommand  = lightResponse.toInt();
- 
-    if (lightCommand == 0 || lightCommand == 1) {
- 
-      requestedLightOn = (lightCommand == 1);
- 
-      Serial.print("Light manual control request: ");
-      Serial.println(requestedLightOn ? "Turn on": "Turn Off");
-    }
+  lightResponse.trim();
+  if (lightResponse == "0" || lightResponse == "1" || lightResponse == "2") {
+    requestedLightMode = static_cast<LightMode>(lightResponse.toInt());
+    Serial.print("Blynk Light Mode: ");
+    Serial.println(requestedLightMode == LIGHT_OFF ? "OFF" :
+                   (requestedLightMode == LIGHT_ON ? "ON" : "AUTO"));
   }
+  // Missing or invalid commands retain the last accepted mode.
 }
  
 // This function handles the assignment of colours to RGB LED Status Indicators
@@ -338,12 +339,6 @@ void safetyCurtainControl(int smokeLevel) {
 }
  
 void lightingControl(int motion, int lightLevel) {
-  if(requestedLightOn){
-    digitalWrite(BULB_PIN, HIGH);
-  }else{
-    digitalWrite(BULB_PIN, LOW);
-  }
- 
   // Motion detected means room is occupied
   if (motion == HIGH) {
     occupied = true;
@@ -353,6 +348,16 @@ void lightingControl(int motion, int lightLevel) {
   // For simulation i am using 10 seconds
   if (occupied && millis() - lastMotionTime >= OCCUPANCY_TIMEOUT) {
     occupied = false;
+  }
+  if (requestedLightMode == LIGHT_OFF) {
+    digitalWrite(BULB_PIN, LOW);
+    Serial.println("LIGHT: OFF - Manual control");
+    return;
+  }
+  if (requestedLightMode == LIGHT_ON) {
+    digitalWrite(BULB_PIN, HIGH);
+    Serial.println("LIGHT: ON - Manual control");
+    return;
   }
   // Higher LDR value means darker
   bool darkRoom = (lightLevel >= LIGHT_THRESHOLD);
@@ -409,13 +414,7 @@ void loop() {
   // Automation systems
   climateControl(data.temperature);
  
-  // lightingControl(motion, lightLevel);
-  if(requestedLightOn == 1){
-    digitalWrite(BULB_PIN, HIGH);
-  }else{
-    digitalWrite(BULB_PIN, LOW);
-  }
-  Serial.println(requestedLightOn);
+  lightingControl(motion, lightLevel);
   safetyCurtainControl(smokeLevel);
   delay(2000);
   // when HVAC is off
