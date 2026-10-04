@@ -14,10 +14,10 @@
 #define BLYNK_SERVER "sgp1.blynk.cloud"
 
 unsigned long lastBlynkUpload = 0;
-const unsigned long BLYNK_UPLOAD_INTERVAL = 5000;
+const unsigned long BLYNK_UPLOAD_INTERVAL = 2000;
 
 unsigned long lastBlynkControl = 0;
-const unsigned long BLYNK_CONTROL_INTERVAL = 5000;
+const unsigned long BLYNK_CONTROL_INTERVAL = 2000;
 
 void connectWiFi() {
 

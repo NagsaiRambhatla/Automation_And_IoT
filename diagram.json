@@ -9,7 +9,7 @@
       "id": "dht1",
       "top": -182.1,
       "left": 282.6,
-      "attrs": { "temperature": "42.6" }
+      "attrs": { "temperature": "26.5" }
     },
     {
       "type": "wokwi-photoresistor-sensor",
@@ -40,6 +40,13 @@
       "top": -90,
       "left": 176.6,
       "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -228,
+      "left": 88.2,
+      "attrs": { "volume": "0.1" }
     }
   ],
   "connections": [
@@ -79,7 +86,9 @@
     [ "rgb4:VDD", "esp:5V", "green", [ "h0" ] ],
     [ "rgb5:VDD", "esp:5V", "green", [ "h0" ] ],
     [ "led1:C", "esp:GND.2", "green", [ "v0" ] ],
-    [ "esp:16", "led1:A", "green", [ "h0" ] ]
+    [ "esp:16", "led1:A", "green", [ "h0" ] ],
+    [ "bz1:1", "esp:GND.2", "green", [ "v0" ] ],
+    [ "bz1:2", "esp:22", "green", [ "v0" ] ]
   ],
   "dependencies": {}
 }
