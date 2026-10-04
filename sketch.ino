@@ -44,8 +44,6 @@ enum LightMode {
 LightMode requestedLightMode = LIGHT_AUTO;
  
 const int LIGHT_THRESHOLD = 2000;
-// Wokwi's normal 400 ppm setting reads about 3628 with a 12-bit ADC.
-// Keep the alarm above this baseline; elevated gas still opens the window.
 const int SMOKE_THRESHOLD = 3800;
  
 // Lighting  config
