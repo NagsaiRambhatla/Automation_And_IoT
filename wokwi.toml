@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = "build/main-dashboard/sketch/build/esp32.esp32.esp32/sketch.ino.merged.bin"
+elf = "build/main-dashboard/sketch/build/esp32.esp32.esp32/sketch.ino.elf"

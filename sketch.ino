@@ -127,10 +127,21 @@ void uploadTelemetry(
   values += "&V3=" + String(smokeLevel);
   values += "&V4=" + String(occupied ? 1 : 0);
   values += "&V5=" + String(digitalRead(BULB_PIN) == HIGH ? 1 : 0);
+  values += "&V6=" + String(digitalRead(RELAY_PIN) == HIGH ? "On" : "Standby");
   values += "&V7=" + String(windowOpen ? 1 : 0);
   values += "&V8=" + String(simulatedTemperature, 2);
   values += "&V11=" + String(digitalRead(RELAY_PIN) == HIGH ? 1 : 0);
   values += "&V18=" + String(targetTemperature, 2);
+
+  // Use the existing readable dashboard streams; controls keep their own pins.
+  const bool climateHealthy = isfinite(temperature) && isfinite(humidity);
+  const bool smokeHigh = smokeLevel >= SMOKE_THRESHOLD;
+  values += "&V13=" + String(climateHealthy ? "Working" : "Fault");
+  values += "&V14=Working&V15=Working";
+  values += "&V16=" + String(smokeHigh ? "Fault" : "Working");
+  values += "&V17=" + String(!climateHealthy || smokeHigh ? "Fault" : "Working");
+  values += "&V19=" + String(smokeHigh ? "High" : "Low");
+  values += "&V20=" + String(digitalRead(BULB_PIN) == HIGH ? "On" : "Off");
  
   updateBlynk(values);
 }
@@ -145,7 +156,12 @@ void getBlynkControls() {
  
     if (newTarget >= 16.0 && newTarget <= 40.0) {
  
-      targetTemperature = newTarget;
+      if (newTarget != targetTemperature) {
+        targetTemperature = newTarget;
+        // Reassess a changed target without jumping the temperature model.
+        climateMode = CLIMATE_STANDBY;
+        digitalWrite(RELAY_PIN, LOW);
+      }
  
       Serial.print("Blynk Target Temperature: ");
       Serial.println(targetTemperature);
@@ -223,6 +239,12 @@ void systemBootUp(){
 }
  
 void climateControl(float sensorTemperature) {
+  if (!isfinite(sensorTemperature)) {
+    digitalWrite(RELAY_PIN, LOW);
+    climateMode = CLIMATE_STANDBY;
+    temperatureInitialized = false;
+    return;
+  }
   // Initialise simulated room temperature once
   if (!temperatureInitialized) {
     simulatedTemperature = sensorTemperature;
