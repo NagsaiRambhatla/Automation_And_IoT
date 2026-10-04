@@ -1,6 +1,6 @@
 # Smart Room dashboard
 
-Updated and verified on 4 October 2026, Australia/Brisbane. The saved Blynk dashboard has 20 widgets arranged as climate on the left, safety and windows in the center, lighting on the right, and two standalone history charts below. This describes the current working copy based on commit 73c0ee4, including its uncommitted dashboard telemetry and climate fixes.
+Updated on 4 October 2026, Australia/Brisbane. The saved Blynk dashboard has 20 widgets arranged as climate on the left, safety and windows in the center, lighting on the right, and two standalone history charts below. This describes branch `04/10`, including the dashboard telemetry and climate fixes committed in f43d4d3 and the subsequent 3,800 ppm smoke limit.
 
 ## Display and control mapping
 
@@ -11,7 +11,7 @@ Updated and verified on 4 October 2026, Australia/Brisbane. The saved Blynk dash
 | Target temperature below the model gauge | V9 | Minus and plus in 0.5 degree steps; range 16–40 degrees Celsius |
 | Air conditioning | V6 | On when the relay is HIGH; Standby when LOW |
 | AC on indicator | V11 | Actual GPIO14 relay output, 0/1 |
-| Smoke text | V19 | High at ADC 3800 or above; otherwise Low |
+| Smoke text | V19 | High at estimated gas concentration 3,800 ppm or above; otherwise Low |
 | Windows / curtains manual switch | V12 | 0 CLOSED; 1 OPEN |
 | Windows open indicator | V7 | Effective commanded state, including smoke override |
 | Light control | V21 | 0 Off; 1 On; 2 Auto |
@@ -21,6 +21,8 @@ Updated and verified on 4 October 2026, Australia/Brisbane. The saved Blynk dash
 | Climate, lighting, occupancy, safety and system health | V13–V17 | Simplified Working/Fault text |
 
 Measured temperature V0 remains sensor telemetry for the controller, but no dashboard widget or chart displays it. V18 remains the applied-target acknowledgement in telemetry; the number control displays the requested V9 target. V10 room classification is not implemented. There is no smoke, raw-light or measured-temperature history chart in the saved dashboard. The only two chart series are simulated temperature V8 and humidity V1, using one-minute averages.
+
+Smoke detection now converts GPIO35's raw ADC reading to estimated ppm using the measured Wokwi calibration in `smoke_ppm.h`. Both window override and dashboard smoke/safety/system status use the same inclusive 3,800 ppm comparison. Serial output shows estimated ppm and the raw reading. V3 remains raw ADC (integer, 0–4095) to match its existing cloud datastream; it is not a ppm value. See `SMOKE_PPM_VERIFICATION.md` for calibration and the new safety checks.
 
 All physical GPIO assignments and existing control virtual pins are preserved: DHT15, PIR27, LDR34, smoke35, servo12, relay14, room light16 and status pixels2. Comparing PIN definitions against the committed sketch produced no differences.
 
@@ -36,19 +38,19 @@ The firmware now serializes V6, V13–V17, V19 and V20 alongside its numeric tel
 
 Use `./build.ps1` with the existing Arduino CLI and ESP32 dependencies. Optional `-ArduinoCli` and `-ConfigFile` arguments select the toolchain. The script prints the firmware path, and `wokwi.toml` points to it.
 
-The latest ESP32 build passed: 1,070,304 bytes flash and 50,584 bytes global RAM. The staged sketch and source have identical SHA-256:
+The latest ESP32 build passed: 1,073,880 bytes flash and 50,584 bytes global RAM. The staged sketch and source have identical SHA-256:
 
-`c2b4c96efebada83b254fa36dfc0018136b17de5fc0e2d9488c0c59eb2d2bf08`
+`c97a3b23950b6c77534c9ab3d9b3e27f9dedf2c16784506db2d04013fb34102f`
 
-Tested merged firmware SHA-256:
+Built merged firmware SHA-256 (full build; smoke behavior tested in an isolated browser harness):
 
-`77f7ed5f044799006b1a849c9a01425165643b9e9e0b566c8a05cc8d34dbaa8d`
+`e48f3f94b0022f688064c1915a8993c9ea048635c79f4c9c51f02d4f858f37cf`
 
 In the browser Wokwi project, focus the editor, press F1, choose **Upload Firmware and Start Simulation**, and select `build/main-dashboard/sketch/build/esp32.esp32.esp32/sketch.ino.merged.bin`. That is the workflow used for the checks below. Ordinary Play compiles the browser editor's source and does not automatically use this local firmware. No public project source was published during this verification.
 
-## Live acceptance checks
+## Earlier dashboard acceptance checks (f43d4d3, raw ADC alarm)
 
-The latest merged firmware was loaded into Wokwi and connected to the existing Smart Room ESP32 Blynk device. These are new observations from this build, separate from the historical report tests.
+The earlier dashboard build was loaded into Wokwi and connected to the existing Smart Room ESP32 Blynk device. The observations below predate the ppm conversion and do not constitute a complete dashboard retest of the new firmware.
 
 | Requirement | Observed evidence | Result |
 | --- | --- | --- |
