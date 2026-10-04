@@ -2,7 +2,6 @@
 #include <ESP32Servo.h>
 #include <Adafruit_NeoPixel.h>
 #include "blynk_config.h"
-#include "smoke_ppm.h"
  
 // Pin Definitions
 #define DHT_PIN    15 //Temperature and humidity sensor pin
@@ -41,6 +40,9 @@ enum LightMode {
 LightMode requestedLightMode = LIGHT_OFF;
  
 const int LIGHT_THRESHOLD = 2000;
+// Wokwi's normal 400 ppm setting reads about 3628 with a 12-bit ADC.
+// Keep the alarm above this baseline; elevated gas still opens the window.
+const int SMOKE_THRESHOLD = 3800;
  
 // Lighting  config
 unsigned long lastMotionTime = 0;
@@ -114,8 +116,7 @@ void uploadTelemetry(
   float temperature,
   float humidity,
   int lightLevel,
-  int smokeAdc,
-  float smokePpm
+  int smokeLevel
 ) {
  
   String values = "";
@@ -123,8 +124,7 @@ void uploadTelemetry(
   values += "&V0=" + String(temperature, 2);
   values += "&V1=" + String(humidity, 2);
   values += "&V2=" + String(lightLevel);
-  // V3's existing cloud datastream is raw ADC (integer, 0-4095).
-  values += "&V3=" + String(smokeAdc);
+  values += "&V3=" + String(smokeLevel);
   values += "&V4=" + String(occupied ? 1 : 0);
   values += "&V5=" + String(digitalRead(BULB_PIN) == HIGH ? 1 : 0);
   values += "&V6=" + String(digitalRead(RELAY_PIN) == HIGH ? "On" : "Standby");
@@ -135,7 +135,7 @@ void uploadTelemetry(
 
   // Use the existing readable dashboard streams; controls keep their own pins.
   const bool climateHealthy = isfinite(temperature) && isfinite(humidity);
-  const bool smokeHigh = smokeAlarmActive(smokePpm);
+  const bool smokeHigh = smokeLevel >= SMOKE_THRESHOLD;
   values += "&V13=" + String(climateHealthy ? "Working" : "Fault");
   values += "&V14=Working&V15=Working";
   values += "&V16=" + String(smokeHigh ? "Fault" : "Working");
@@ -348,9 +348,9 @@ void ambientTemperatureDrift(float ambientTemperature) {
   }
 }
  
-void safetyCurtainControl(float smokePpm) {
+void safetyCurtainControl(int smokeLevel) {
  
-  bool smokeDetected = smokeAlarmActive(smokePpm);
+  bool smokeDetected = smokeLevel >= SMOKE_THRESHOLD;
  
   // Smoke has priority over the Blynk command
   if (smokeDetected) {
@@ -426,8 +426,7 @@ void loop() {
  
   int motion = readMotion();
   int lightLevel = analogRead(LDR_PIN);
-  int smokeAdc = analogRead(SMOKE_PIN);
-  float smokePpm = smokeAdcToPpm(smokeAdc);
+  int smokeLevel = analogRead(SMOKE_PIN);
   Serial.println("---- SENSOR DATA --------");
  
   Serial.print("Actual Temperature: ");
@@ -448,17 +447,15 @@ void loop() {
   Serial.print("Light level: ");
   Serial.println(lightLevel);
  
-  Serial.print("Smoke level (estimated): ");
-  Serial.print(smokePpm, 1);
-  Serial.print(" ppm | Raw ADC: ");
-  Serial.println(smokeAdc);
+  Serial.print("Smoke level: ");
+  Serial.println(smokeLevel);
  
   Serial.println("----------");
   // Automation systems
   climateControl(data.temperature);
  
   lightingControl(motion, lightLevel);
-  safetyCurtainControl(smokePpm);
+  safetyCurtainControl(smokeLevel);
   delay(2000);
   // when HVAC is off
   ambientTemperatureDrift(data.temperature);
@@ -470,8 +467,7 @@ void loop() {
     data.temperature,
     data.humidity,
     lightLevel,
-    smokeAdc,
-    smokePpm
+    smokeLevel
   );
  }
  if (millis() - lastBlynkControl >= BLYNK_CONTROL_INTERVAL) {
